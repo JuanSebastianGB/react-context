@@ -5,6 +5,7 @@ import Main from './Main';
 
 const initialTheme = 'light';
 const initialLanguage = 'en';
+const initialAuth = false;
 
 const translations = {
   es: {
@@ -37,6 +38,7 @@ const MyPage = () => {
   const [theme, setTheme] = useState(initialTheme);
   const [language, setLanguage] = useState(initialLanguage);
   const [texts, setTexts] = useState(translations[language]);
+  const [auth, setAuth] = useState(initialAuth);
 
   const handleTheme = e => {
     const result = e.target.value;
@@ -47,6 +49,9 @@ const MyPage = () => {
     setLanguage(result);
     setTexts(translations[result]);
   };
+  const handleAuth = () => {
+    setAuth(!auth);
+  };
   return (
     <div className='my-page'>
       <Header
@@ -54,8 +59,10 @@ const MyPage = () => {
         handleTheme={handleTheme}
         texts={texts}
         handleLanguage={handleLanguage}
+        auth={auth}
+        handleAuth={handleAuth}
       />
-      <Main theme={theme} texts={texts} />
+      <Main theme={theme} texts={texts} auth={auth} />
       <Footer theme={theme} texts={texts} />
     </div>
   );
