@@ -1,11 +1,11 @@
 import PropTypes from 'prop-types';
 
-const Header = ({ theme, handleTheme }) => {
+const Header = ({ theme, handleTheme, texts, handleLanguage }) => {
   return (
     <header className={theme}>
-      <h2>Default application without Context</h2>
-      <h3>Header</h3>
-      <select name='' id=''>
+      <h2>{texts.headerTitle}</h2>
+      <h3>{texts.headerSubtitle}</h3>
+      <select name='' id='' onChange={handleLanguage}>
         <option value='es'>ES</option>
         <option value='en'>EN</option>
       </select>
@@ -16,7 +16,7 @@ const Header = ({ theme, handleTheme }) => {
         id='light'
         value='light'
       />
-      <label htmlFor='light'>Light</label>
+      <label htmlFor='light'>{texts.light}</label>
       <input
         type='radio'
         onClick={handleTheme}
@@ -24,8 +24,11 @@ const Header = ({ theme, handleTheme }) => {
         id='dark'
         value='dark'
       />
-      <label htmlFor='dark'>dark</label>
-      <button> Login</button>
+      <label htmlFor='dark'>{texts.dark}</label>
+      <button>
+        {texts.buttonLogin}
+        {texts.buttonLogout}
+      </button>
     </header>
   );
 };
@@ -33,5 +36,7 @@ const Header = ({ theme, handleTheme }) => {
 Header.propTypes = {
   theme: PropTypes.string,
   handleTheme: PropTypes.func,
+  texts: PropTypes.object,
+  handleLanguage: PropTypes.func,
 };
 export default Header;
